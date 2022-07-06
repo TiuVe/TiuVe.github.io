@@ -45,7 +45,8 @@
 <p>sequence-sequence对比任务和sequence-item非常类似，这里不再累述。值得注意的是，这是使用了drop（item drop和word drop）方式增强泛化能力。</p>
 <img src="/images/2022/seq_seq_loss.png">
 
-<p><strong>多任务融合</strong></p>
+<p>3 <strong>多任务融合</strong></p>
+<p>就是融合连个对比学习任务的loss。</p>
 <img src="/images/2022/multi_task.png">
 
 <img src="/images/2022/multi_task_1.png">
@@ -55,7 +56,7 @@
 <p>2.2 评估</p>
 <img src="/images/2022/uniSRec_eval.png">
 
-<h2 id="4-个人总结"><a href="#4-个人总结" class="headerlink" title="4 个人总结"></a>4 个人总结</h2><p>总的来说，工作是围绕着建设通用化序列表征开展的，idea也比较好。去年我们团队也尝试过类似的思路，用于广告业务，但是效果不是特别明显。当然这其中的原因很多，某些域的数据非常稀疏，这可能最主要的原因。我个人认为这个思路还是值得尝试的，但是在工程中可能需要做必要的简化以应对庞大的数据（个人感觉6个月及以上的数据是必要的，不然数据数据太稀疏了）。</p>
+<h2 id="4-个人总结"><a href="#4-个人总结" class="headerlink" title="4 个人总结"></a>4 个人总结</h2><p>总的来说，工作是围绕着建设通用化序列表征开展的，idea也比较好。去年我们团队也尝试过类似的思路，用于广告业务，但是效果不是特别明显。当然这其中的原因很多，某些域的数据非常稀疏，这可能最主要的原因。我个人认为这个思路还是值得尝试的，但是在工程中可能需要做必要的简化以应对庞大的数据（个人感觉6个月及以上的数据是必要的，不然数据太稀疏了）。</p>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
 tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
