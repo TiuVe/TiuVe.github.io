@@ -79,7 +79,7 @@
 <img src="/images/2022/peterrec_causal_cnn_arch.png" width="75%" height="75%">
 
 <p>另外值得一提的是，论文对不同的下游任务使用了不同的loss。对于topN推荐任务使用了BPR损失，对于用户属性预测任务使用了交叉熵损失。</p>
-<img src="/images/2022/Peter_loss.png" width="75%" height="75%">
+<img src="/images/2022/peter_loss.png" width="75%" height="75%">
 
 <p><strong>2 模型补丁</strong></p>
 <p>模型补丁其实也是一个神经网络，其目的是使预训练的DC残差块适应下游任务。最近一个learn-to-learn的研究表明，可以根据模型5%的参数预测剩下95%的参数。作者希望不微调所有参数，二是通过微调部分参数在下游任务中实现更好的性能。模型补丁的结构如图3f所示，由两个卷积层（kernel 1×1，维度k，通道d），一个Relu激活层和一个残差结构组成。这里使用其它的模型补丁也是可以的。</p>
