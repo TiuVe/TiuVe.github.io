@@ -3,17 +3,17 @@
 <p>假设我们有一枚硬币，抛出后正面朝上的概率为p(0&lt;p&lt;1)。现在我们抛出了49个正面(H)，31个反面(T)。我们来求其似然函数的最大值：</p>
 <p>$$f(\theta)&#x3D;f_D(H&#x3D;49,T&#x3D;80-49|p)&#x3D;\left(\frac{80}{49}\right)p^{49}(1-p)^{31} \tag{1.1}$$</p>
 <p>我们对方程两边同时取微分，并使其为零。</p>
-<p>$$<br>\begin{aligned}<br>0&amp;&#x3D;\frac{d}{dp}\left(\left(\frac{80}{49}\right)p^{49}(1-p)^{31}\right) \<br>&amp;\infty 49p^{48}(1-p)^{31}-31p^{49}(1-p)^{30}\<br>&amp;&#x3D;p^{48}(1-p)^{30}[49(1-p)-31p]<br>\end{aligned} \tag{1.2}<br>$$</p>
+<p>$$<br>\begin{aligned}<br>0&amp;&#x3D;\frac{d}{dp}\left(\left(\frac{80}{49}\right)p^{49}(1-p)^{31}\right) \<br>&amp;\infty 49p^{48}(1-p)^{31}-31p^{49}(1-p)^{30}\<br>&amp;&#x3D;p^{48}(1-p)^{30}[49(1-p)-31p] \<br>\end{aligned} \tag{1.2}<br>$$</p>
 <p>其解为p&#x3D;0,p&#x3D;1，以及p&#x3D;49&#x2F;80。使可能性最大的解显然是p&#x3D;49&#x2F;80，p&#x3D;0和p&#x3D;1这两个解会使可能性为零）。因此我们说最大似然估计值为49&#x2F;80。</p>
 <p>这个结果很容易一般化。只需要用一个字母t代替49用以表达伯努利试验中的被观察数据（即样本）的“成功”次数，用另一个字母n代表伯努利试验的次数即可。使用完全同样的方法即可以得到最大似然估计值:</p>
-<p>$$\hat{p}&#x3D;\frac{t}{n} \tag{1.3} $$</p>
+<p>$$<br>\hat{p}&#x3D;\frac{t}{n} \tag{1.3}<br>$$</p>
 <p>对于任何成功次数为t，试验总数为n的伯努利试验。<br>以上就是用极大似然法求解离散分布，连续参数空间的情况。</p>
 <h2 id="2-朴素贝叶斯"><a href="#2-朴素贝叶斯" class="headerlink" title="2 朴素贝叶斯"></a>2 朴素贝叶斯</h2><p>朴素贝叶斯是基于<strong>贝叶斯定理</strong>与<strong>特征条件独立假设</strong>的<strong>分类</strong>方法。对于给定的训练数据集，首先基于特征条件独立假设 学习输入&#x2F;输出的<strong>联合概率分布</strong>；然后基于此模型，对于给定的输入x，利用贝叶斯定理求出后验概率最大的输出y。</p>
 <p><strong>先验概率</strong><br>在贝叶斯统计中，某一不确定量p的先验概率分布是在考虑”观测数据”前，能表达p不确定性的概率分布。</p>
 <p><strong>后验概率</strong>  （知道“果”，推测“因”的概率）<br>在贝叶斯统计中，一个随机事件的后验概率是在考虑相关证据 ( 观测数据 ) 后所得到的条件概率。换句话说，后验概率分布是一个随机变量基于试验得到的概率分布。</p>
 <h3 id="2-1-联合概率分布"><a href="#2-1-联合概率分布" class="headerlink" title="2.1 联合概率分布"></a>2.1 联合概率分布</h3><p>在概率论中, 对两个随机变量X和Y，其联合分布是同时对于X和Y的概率分布。</p>
 <p>对离散随机变量而言，联合分布概率质量函数为$P(X &#x3D; x , and , Y &#x3D; y)$，即</p>
-<p>$$P(X&#x3D;x , and , Y&#x3D;y)&#x3D;P(Y&#x3D;y|X&#x3D;x)P(X&#x3D;x)&#x3D;p(X&#x3D;x|Y&#x3D;y)P(Y&#x3D;y) \tag{2.1} $$</p>
+<p>$$<br>P(X&#x3D;x , and , Y&#x3D;y)&#x3D;P(Y&#x3D;y|X&#x3D;x)P(X&#x3D;x)&#x3D;p(X&#x3D;x|Y&#x3D;y)P(Y&#x3D;y) \tag{2.1}<br>$$</p>
 <p>因为是概率分布函数，所以必须有</p>
 <p>$$\sum_{x}{\sum_{y}{f_{X,Y}(x,y)dy dx}}&#x3D;1 \tag{2.2} $$</p>
 <h3 id="2-2-朴素贝叶斯的推导"><a href="#2-2-朴素贝叶斯的推导" class="headerlink" title="2.2 朴素贝叶斯的推导"></a>2.2 朴素贝叶斯的推导</h3><p>给定训练集 $T&#x3D;\{(x_1,y_1),(x_2,y_2),..,(x_N,y_N)\}$，其由 $P(X,Y)$ 独立同分布产生。朴素贝叶斯法通过训练数据集学习联合概率分布$P(X,Y)$。具体地，学习以下先验分布和条件概率分布。先验分布$P(Y&#x3D;c_k),k&#x3D;1,2,…,K$,条件概率分布</p>
@@ -24,11 +24,11 @@
 <p>$$<br>\begin {aligned}<br>P(X&#x3D;x|Y&#x3D;c_k)&amp;&#x3D;P(X^{(1)}&#x3D;x^{(1)}, .. , X^{(n)}&#x3D;x^{(n)}|Y&#x3D;c_k) \<br>&amp;&#x3D;\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}<br>\end {aligned}  \tag{2.3}<br>$$</p>
 <p>朴素贝叶斯实际上学习到了生成数据的机制，所以属于生成模型。</p>
 <p>朴素贝叶斯分类时，对给定的输入x，通过后验概率分布$P(Y&#x3D;c_k|X&#x3D;x)$，将后验概率最大的类作为x的类输出。后验概率的计算根据<strong>贝叶斯定理</strong>进行：</p>
-<p>$$P(Y&#x3D;c_k|X&#x3D;x)&#x3D;\frac{P(X&#x3D;x|Y&#x3D;c_k)P(Y&#x3D;c_k)}{\sum_{i}^K{P(X&#x3D;x|Y&#x3D;c_i)P(Y&#x3D;c_i)}}  \tag{2.4} $$</p>
+<p>$$<br>P(Y&#x3D;c_k|X&#x3D;x)&#x3D;\frac{P(X&#x3D;x|Y&#x3D;c_k)P(Y&#x3D;c_k)}{\sum_{i}^K{P(X&#x3D;x|Y&#x3D;c_i)P(Y&#x3D;c_i)}}  \tag{2.4}<br>$$</p>
 <p>将$(2.3)$代入$(2.4)$有</p>
-<p>$$P(Y&#x3D;c_k|X&#x3D;x)&#x3D;\frac{P(Y&#x3D;c_k)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}}{\sum_{i}^K{P(Y&#x3D;c_i)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}} ,, k&#x3D;1,2,..,K \tag{2.5} $$</p>
+<p>$$<br>P(Y&#x3D;c_k|X&#x3D;x)&#x3D;\frac{P(Y&#x3D;c_k)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}}{\sum_{i}^K{P(Y&#x3D;c_i)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}} ,, k&#x3D;1,2,..,K \tag{2.5}<br>$$</p>
 <p>这就是朴素贝叶斯分类的基本公式。于是，朴素贝叶斯分类器可表示为</p>
-<p>$$y&#x3D;f(x)&#x3D;\mathop{\arg\max}<em>{c_k} \frac{P(Y&#x3D;c_k)\prod</em>{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}}{\sum_{i}^K{P(Y&#x3D;c_i)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}}  \tag{2.6} $$</p>
+<p>$$<br>y&#x3D;f(x)&#x3D;\mathop{\arg\max}<em>{c_k} \frac{P(Y&#x3D;c_k)\prod</em>{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}}{\sum_{i}^K{P(Y&#x3D;c_i)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}}  \tag{2.6}<br>$$</p>
 <p>在$(2.6)$中，分母对所有$C_k$都是相同的，所以可以进一步简化为</p>
 <p>$$y&#x3D;\mathop{\arg\max}<em>{c_k} P(Y&#x3D;c_k) \prod</em>{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)} \tag{2.7}$$</p>
 <h3 id="2-3-朴素贝叶斯算法的参数估计"><a href="#2-3-朴素贝叶斯算法的参数估计" class="headerlink" title="2.3 朴素贝叶斯算法的参数估计"></a>2.3 朴素贝叶斯算法的参数估计</h3><p>在朴素贝叶斯中，学习意味着估计$P(Y&#x3D;c_k)$和$P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)$，可以使用极大似然法估计相应的概率(思想即伯努利试验的极大似然估计的泛化，详见第一部分)，先验概率$P(y&#x3D;c_k)$ 的极大似然估计是</p>
