@@ -26,7 +26,7 @@
 <p>朴素贝叶斯分类时，对给定的输入x，通过后验概率分布$P(Y&#x3D;c_k|X&#x3D;x)$，将后验概率最大的类作为x的类输出。后验概率的计算根据<strong>贝叶斯定理</strong>进行：</p>
 <p>$$<br>P(Y&#x3D;c_k|X&#x3D;x)&#x3D;\frac{P(X&#x3D;x|Y&#x3D;c_k)P(Y&#x3D;c_k)}{\sum_{i}^K{P(X&#x3D;x|Y&#x3D;c_i)P(Y&#x3D;c_i)}}  \tag{2.4}<br>$$</p>
 <p>将$(2.3)$代入$(2.4)$有</p>
-<p>$$<br>P(Y&#x3D;c_k|X&#x3D;x)&#x3D;\frac{P(Y&#x3D;c_k)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}}{\sum_{i}^K{P(Y&#x3D;c_i)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}} ,, k&#x3D;1,2,..,K \tag{2.5}<br>$$</p>
+<p>$$<br>P(Y&#x3D;c_k|X&#x3D;x)&#x3D; \frac{P(Y&#x3D;c_k) \prod_{j&#x3D;1}^n P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)} { \sum_{i}^K{P(Y&#x3D;c_i) \prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}} ,, k&#x3D;1,2,..,K \tag{2.5}<br>$$</p>
 <p>这就是朴素贝叶斯分类的基本公式。于是，朴素贝叶斯分类器可表示为</p>
 <p>$$<br>y&#x3D;f(x)&#x3D;\mathop{\arg\max}<em>{c_k} \frac{P(Y&#x3D;c_k)\prod</em>{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}}{\sum_{i}^K{P(Y&#x3D;c_i)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}}  \tag{2.6}<br>$$</p>
 <p>在$(2.6)$中，分母对所有$C_k$都是相同的，所以可以进一步简化为</p>
