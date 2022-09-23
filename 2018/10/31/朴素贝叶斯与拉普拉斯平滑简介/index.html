@@ -28,7 +28,7 @@
 <p>将$(2.3)$代入$(2.4)$有</p>
 <p>$$<br>P(Y&#x3D;c_k|X&#x3D;x)&#x3D; \frac{P(Y&#x3D;c_k) \prod_{j&#x3D;1}^n P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)} { \sum_{i}^K{P(Y&#x3D;c_i) \prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}} ,, k&#x3D;1,2,..,K \tag{2.5}<br>$$</p>
 <p>这就是朴素贝叶斯分类的基本公式。于是，朴素贝叶斯分类器可表示为</p>
-<p>$$<br>y&#x3D;f(x)&#x3D;{\mathop{\arg\max}<em>{c_k}}\frac{P(Y&#x3D;c_k)\prod</em>{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}}{\sum_{i}^K{P(Y&#x3D;c_i)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}}  \tag{2.6}<br>$$</p>
+<p>$$<br>y&#x3D;f(x)&#x3D;\mathop{\arg\max}\limits_{c_k}\frac{P(Y&#x3D;c_k)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)}}{\sum_{i}^K{P(Y&#x3D;c_i)\prod_{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_i)}}}  \tag{2.6}<br>$$</p>
 <p>在$(2.6)$中，分母对所有$C_k$都是相同的，所以可以进一步简化为</p>
 <p>$$y&#x3D;\mathop{\arg\max}<em>{c_k} P(Y&#x3D;c_k) \prod</em>{j&#x3D;1}^n{P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)} \tag{2.7}$$</p>
 <h3 id="2-3-朴素贝叶斯算法的参数估计"><a href="#2-3-朴素贝叶斯算法的参数估计" class="headerlink" title="2.3 朴素贝叶斯算法的参数估计"></a>2.3 朴素贝叶斯算法的参数估计</h3><p>在朴素贝叶斯中，学习意味着估计$P(Y&#x3D;c_k)$和$P(X^{(j)}&#x3D;x^{(j)}|Y&#x3D;c_k)$，可以使用极大似然法估计相应的概率(思想即伯努利试验的极大似然估计的泛化，详见第一部分)，先验概率$P(y&#x3D;c_k)$ 的极大似然估计是</p>
