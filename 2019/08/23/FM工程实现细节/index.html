@@ -12,8 +12,8 @@
 <li><strong>分类问题</strong>（此处指的是二分类问题）通常使用逻辑损失函数（也叫交叉熵损失函数），即$ln(1+e^{-yy(x)})，y\in{-1,1}$。</li>
 </ul>
 <p>所以对于二分类问题，FM 算法的损失函数如下：</p>
-<p>$$<br>    loss(x) &#x3D; ln(1+e^{-yy(x)})<br>$$</p>
-<p>加上 L2正则化之后，损失函数如下：<br>$$<br>\begin{aligned}<br>    loss(x) &amp;&#x3D; ln(1+e^{-yy(x)}) + \frac{\beta}{2}{\theta}^2 \\<br>    &amp;&#x3D; ln(1+e^{-yy(x)}) + \frac{\beta}{2}{w_0}^2 + \frac{\beta}{2}{w_i}^2 + \frac{\beta}{2}{v_iv_i^T} \\<br>    &amp;&#x3D; ln(1+e^{yy(x)})-ln(e^{yy(x)}) + \frac{\beta}{2}{w_0}^2 + \frac{\beta}{2}{w_i}^2 + \frac{\beta}{2}{v_iv_i^T} \\<br>    &amp;&#x3D; ln(1+e^{yy(x)})-yy(x) + \frac{\beta}{2}{w_0}^2 + \frac{\beta}{2}{w_i}^2 + \frac{\beta}{2}{v_iv_i^T}<br>\end{aligned}<br>$$</p>
+<p>$$<br>loss(x) &#x3D; ln(1+e^{-yy(x)})<br>$$</p>
+<p>加上 L2正则化之后，损失函数如下：<br>$$<br>\begin{aligned}<br>    loss(x) &amp;&#x3D; ln(1+e^{-yy(x)}) + \frac{\beta}{2}{\theta}^2 \\<br>    &amp;&#x3D; ln(1+e^{-yy(x)}) + \frac{\beta}{2}{w_0}^2 + \frac{\beta}{2}{w_i}^2 + \frac{\beta}{2}{v_{i,f}v_{i,f}^T} \\<br>    &amp;&#x3D; ln(1+e^{yy(x)})-ln(e^{yy(x)}) + \frac{\beta}{2}{w_0}^2 + \frac{\beta}{2}{w_i}^2 + \frac{\beta}{2}{v_{i,f}v_{i,f}^T} \\<br>    &amp;&#x3D; ln(1+e^{yy(x)})-yy(x) + \frac{\beta}{2}{w_0}^2 + \frac{\beta}{2}{w_i}^2 + \frac{\beta}{2}{v_{i,f}v_{i,f}^T}<br>\end{aligned}<br>$$</p>
 <p>梯度求导，以$w_0$为例：</p>
 <p>$$<br>\begin{aligned}<br>    \frac{\partial loss(x)}{\partial w_0} &amp;&#x3D; \frac{1}{1+e^{yy(x)}}\cdot e^{yy(x)} \cdot y \cdot \frac{\partial y(x)}{\partial w_0}  - y\frac{\partial y(x)}{\partial w_0} + \beta w_0 \\<br>    &amp;&#x3D; sigmoid(yy(x)) \cdot y \cdot \frac{\partial y(x)}{\partial w_0}  - y\frac{\partial y(x)}{\partial w_0} + \beta w_0  \\<br>    &amp;&#x3D; (sigmoid(yy(x)) - 1 )\cdot y\frac{\partial y(x)}{\partial w_0} + \beta w_0  \qquad  (1) \\<br>    &amp;&#x3D; (sigmoid(yy(x)) - 1 )\cdot y + \beta<br>\end{aligned}<br>$$</p>
 <p>在实现的时候通常可以将(1)处的$(sigmoid(yy(x)) - 1 )\cdot y$计算保存，不同参数的梯度求导在于其它项的不同。</p>
