@@ -11,14 +11,14 @@
 <p>上式第一部分是item的对比学习任务，第二部分是基于图结构的user-item的相关性框架。第三部分是假设所有参数服从高斯先验分布。</p>
 <h1 id="2-user-item的相关性框架"><a href="#2-user-item的相关性框架" class="headerlink" title="2. user-item的相关性框架"></a>2. user-item的相关性框架</h1><img src="/images/2023/u2i_arch.png">
 
-<h2 id="2-1-样本设计"><a href="#2-1-样本设计" class="headerlink" title="2.1 样本设计"></a>2.1 样本设计</h2><p>${(u,i), (u,j_1),(u,j_2)..,(u,j_K)}$</p>
+<h2 id="2-1-样本设计"><a href="#2-1-样本设计" class="headerlink" title="2.1 样本设计"></a>2.1 样本设计</h2><p>$\lbrace (u,i), (u,j_1),(u,j_2)..,(u,j_K) \rbrace$</p>
 <p>(u,i)是正样本，u表示用户，i表示用户交互过的item；$(u,j_K)$是负样本，$j_K$表示用户u没有交互过的item，K是随机采样的item个数。</p>
 <h2 id="2-2-相关性设计"><a href="#2-2-相关性设计" class="headerlink" title="2.2 相关性设计"></a>2.2 相关性设计</h2><p>简单来说就是，用户交互过的item集合来表征user，购买过item的用户集合来表征item，最后计算二者的相关性。这样的话对于冷启动的item则无能为力，所以又设计了item的对比学习任务。</p>
 <img src="/images/2023/u2i.png">
 
 <h1 id="3-item对比学习任务"><a href="#3-item对比学习任务" class="headerlink" title="3 item对比学习任务"></a>3 item对比学习任务</h1><img src="/images/2023/i2i_arch.png">
 
-<h2 id="3-1-样本设计"><a href="#3-1-样本设计" class="headerlink" title="3.1 样本设计"></a>3.1 样本设计</h2><p>${(i,i), (i,j_1),(i,j_2)..,(i,j_K)}$</p>
+<h2 id="3-1-样本设计"><a href="#3-1-样本设计" class="headerlink" title="3.1 样本设计"></a>3.1 样本设计</h2><p>$\lbrace (i,i), (i,j_1),(i,j_2)..,(i,j_K) \rbrace$</p>
 <p>$(i,i)$ 是正样本，$(i,j_K)$是负样本。$i$和$j_K$都是item。</p>
 <h2 id="3-2-对比学习设计"><a href="#3-2-对比学习设计" class="headerlink" title="3.2 对比学习设计"></a>3.2 对比学习设计</h2><p>item的对比学习任务做了两个数据增强。1是基于user-item的相关性框架得到的item表征，2是基于item的内容信息通过一个特征提取器得到的item表征，特征提取器是一个简单的MLP。</p>
 <p>在得到上述两个item表征之后，最后计算二者的相似性。</p>
